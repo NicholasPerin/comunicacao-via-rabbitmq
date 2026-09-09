@@ -1,6 +1,16 @@
 # Serviço de mensageria Cliente-Servidor via RabbitMQ
 
-Teste de uso de Docker com Python.
+O RabbitMQ é uma ferramenta que possibilita o queue de mensagens entre processos. Neste código, o `producer` envia uma mensagem ao queue a cada 10 segundos, do qual o `consumer` irá receber e confirmar pelo terminal Python / logs.
+
+![rabbitmq_1](assets/dashboard-rabbitmq-01.png)
+
+Acima, é possível ver que cada mensagem enviada pelo `producer` é lida pelo `consumer`, deixando nenhuma mensagem na queue.
+
+![rabbitmq_2](assets/dashboard-rabbitmq-02.png)
+
+Porém, se `consumer` estiver inativo enquanto `producer` está ativo, as mensagens se acumulam na queue até `consumer` ficar ativo novamente.
+
+## Install
 
 Necessário usar [Docker Desktop](https://www.docker.com/products/docker-desktop/) para rodar o RabbitMQ. Caso esteja usando o Windows como sistema operacional, verifique os [requisitos operacionais](https://docs.docker.com/desktop/setup/install/windows-install/).
 
@@ -17,10 +27,7 @@ Username: guest
 Password: guest
 ```
 
-A cada 10 segundos, o `producer` envia uma mensagem ao queue, do qual o `consumer` irá receber e confirmar pelo terminal.
-Se `consumer` estiver inativo enquanto `producer` está ativo, as mensagens se acumulam na queue até `consumer` ficar ativo novamente.
-
-Para parar todo o processo:
+Para encerrar todos os processos:
 
 ```bash
 docker compose down

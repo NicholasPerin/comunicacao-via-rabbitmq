@@ -20,7 +20,7 @@ while True:
         channel.basic_publish(
             exchange="",
             routing_key="queue_de_mensagens",
-            body="Esta é uma mensagem enviada pelo queue.",
+            body="Esta e uma mensagem enviada pelo queue.",
         )
         print("Enviado!")
 

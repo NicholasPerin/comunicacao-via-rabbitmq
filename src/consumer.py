@@ -12,7 +12,7 @@ channel.queue_declare(queue="queue_de_mensagens")
 
 def callback(ch, method, properties, body):
     """
-    Executado automaticamente pela bilbioteca "pika" a cada mensagem recebida na fila.
+    Executado automaticamente pela biblioteca "pika" a cada mensagem recebida na fila.
     ch: canal usado para enviar ack/nack.
     method: contém o delivery_tag, necessário para confirmar a mensagem.
     body: conteúdo da mensagem recebida.
@@ -28,6 +28,6 @@ def callback(ch, method, properties, body):
 
 
 # Aguarda o recebimento de mensagens na queue. Após cada uma, rodar a função callback()
-channel.basic_consume(queue="queue_de_mensagens", on_message_callback=callback)
+channel.basic_consume(queue="queue_de_mensagens", on_message_callback=callback, auto_ack=False)
 print("Aguardando mensagens...")
 channel.start_consuming()
